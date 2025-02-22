@@ -46,13 +46,8 @@ int	main(int ac, char **av, char **env)
 		}
 		if (*input)
 			add_history(input);
-		if (ft_strncmp(input, "exit", 4) == 0)
-		{
-			free(input);
-			break ;
-		}
-		if (ft_strncmp(input, "env", 3) == 0)
-			print_env(shell.env);
+		if (!it_is_builtin(input, &shell))
+			ft_putstr_fd("\n", 1);
 		else
 			execute_command(input, &shell);
 		free(input);

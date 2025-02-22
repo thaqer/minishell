@@ -29,4 +29,3 @@ char	*ft_strtrim(char const *s1, char const *set)
 	len = b - a + 1;
 	return (ft_substr(a, 0, len));
 }
-// how can i use ft_strrchr????

@@ -25,10 +25,10 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-# include "../libft/libft.h"
-# include "../printf/ft_printf.h"
-# include "../get_next_line/get_next_line.h"
-# include "../pipex/pipex.h"
+# include "libft/libft.h"
+# include "printf/ft_printf.h"
+# include "get_next_line/get_next_line.h"
+# include "pipex/pipex.h"
 
 # define PROMPT "darkspace$ "
 # define MAX_PATH 4096
@@ -46,10 +46,18 @@ typedef struct s_shell
 }        t_shell;
 
 t_env	*get_env(char **env);
-void    print_env(t_env *env);
+int    print_env(t_env *env);
 void    execute_command(char *input, t_shell *shell);
 void    ft_free_array(char **split);
 void    handle_signal(int sig);
 void    setup_signals(void);
+int    it_is_builtin(char *input, t_shell *shell);
+int    ft_cd(char *input, t_shell *shell);
+int	print_env(t_env *env);
+int	ft_cd(char *input, t_shell *shell);
+void	set_env_value(char *key, char *value, t_env *env);
+
+
+char	*get_env_value(char *key, t_env *env);
 
 #endif
