@@ -57,9 +57,43 @@ int	print_env(t_env *env)
 	return (1);
 }
 
-int	ft_cd(char *input, t_shell *shell)
+int	ft_cd(t_shell *shell)
 {
+	char	*path;
+	char	*oldpwd;
+	char	*pwd;
 
+	path = ft_strtrim(shell->input + 2, " ");
+	if (!path)
+	{
+		path = get_env_value("HOME", shell->env);
+		if (!path)
+			return (error_message("HOME not set"));
+	}
+	oldpwd = getcwd(NULL, 0);
+	if (!oldpwd)
+		return (error_message(strerror(errno)));
+	if (chdir(path) == -1)
+	{
+		free(oldpwd);
+		return (error_message(strerror(errno)));
+	}
+	pwd = getcwd(NULL, 0);
+	if (!pwd)
+		return (error_message(strerror(errno)));
+	set_env_value("OLDPWD", oldpwd, shell->env);
+	set_env_value("PWD", pwd, shell->env);
+	free(oldpwd);
+	free(pwd);
+	return (1);
+}
+
+int	error_message(char *message)
+{
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(message, 2);
+	ft_putstr_fd("\n", 2);
+	return (1);
 }
 
 char	*get_env_value(char *key, t_env *env)
