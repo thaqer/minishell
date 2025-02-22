@@ -25,11 +25,12 @@ void	execute_command(char *input, t_shell *shell)
 	if (pid == 0)
 	{
 		if (execvp(args[0], args) == -1)
-			perror("execvp");
+			perror("\033[31mexecvp\033[0m");
+		perror("\033[31mexecvp\033[0m");
 		exit(EXIT_FAILURE);
 	}
 	else if (pid < 0)
-		perror("fork");
+		perror("\033[31mfork\033[0m");
 	else
 		waitpid(pid, NULL, 0);
 	ft_free_array(args);

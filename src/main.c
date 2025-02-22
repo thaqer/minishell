@@ -28,7 +28,6 @@ void	ft_free_array(char **array)
 int	main(int ac, char **av, char **env)
 {
 	t_shell	shell;
-	char	*input;
 
 	(void)ac;
 	(void)av;
@@ -38,19 +37,17 @@ int	main(int ac, char **av, char **env)
 	setup_signals();
 	while (1)
 	{
-		input = readline(PROMPT);
-		if (!input)
+		shell.input = readline(PROMPT);
+		if (!shell.input)
 		{
 			ft_putstr_fd("exit\n", 1);
 			break ;
 		}
-		if (*input)
-			add_history(input);
-		if (!it_is_builtin(input, &shell))
-			ft_putstr_fd("\n", 1);
-		else
-			execute_command(input, &shell);
-		free(input);
+		if (ft_strlen(shell.input) > 0)
+			add_history(shell.input);
+		if (!it_is_builtin(&shell))
+			execute_command(shell.input, &shell);
+		free(shell.input);
 	}
 	rl_clear_history();
 	return (0);

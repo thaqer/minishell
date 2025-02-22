@@ -30,7 +30,7 @@
 # include "get_next_line/get_next_line.h"
 # include "pipex/pipex.h"
 
-# define PROMPT "darkspace$ "
+# define PROMPT "\033[94mdarkspace$ \033[0m"
 # define MAX_PATH 4096
 
 typedef struct s_env
@@ -42,7 +42,12 @@ typedef struct s_env
 typedef struct s_shell
 {
         t_env        *env;
-        
+		char		*input;
+		char		**args;
+		char		**paths;
+		char		*path;
+		char		*command;
+		char		*full_path;
 }        t_shell;
 
 t_env	*get_env(char **env);
@@ -51,8 +56,8 @@ void    execute_command(char *input, t_shell *shell);
 void    ft_free_array(char **split);
 void    handle_signal(int sig);
 void    setup_signals(void);
-int    it_is_builtin(char *input, t_shell *shell);
-int    ft_cd(char *input, t_shell *shell);
+int    it_is_builtin(t_shell *shell);
+int    ft_cd(t_shell *shell);
 int	print_env(t_env *env);
 int	ft_cd(char *input, t_shell *shell);
 void	set_env_value(char *key, char *value, t_env *env);

@@ -12,35 +12,35 @@
 
 # include "../minishell.h"
 
-int	it_is_builtin(char *input, t_shell *shell)
+int	it_is_builtin(t_shell *shell)
 {
-	if (ft_strncmp(input, "cd", 2) == 0)
-		return(ft_cd(input, shell));
-	else if (ft_strncmp(input, "env", 3) == 0)
+	if (ft_strncmp(shell->input, "cd", 2) == 0)
+		return(ft_cd(shell->input, shell));
+	else if (ft_strncmp(shell->input, "env", 3) == 0)
 		return (print_env(shell->env));
-	else if (ft_strncmp(input, "export", 6) == 0)
+	else if (ft_strncmp(shell->input, "export", 6) == 0)
 	{
-		//ft_export(input, shell);
+		//ft_export(shell->input, shell);
 		return (1);
 	}
-	else if (ft_strncmp(input, "unset", 5) == 0)
+	else if (ft_strncmp(shell->input, "unset", 5) == 0)
 	{
-		//ft_unset(input, shell);
+		//ft_unset(shell->input, shell);
 		return (1);
 	}
-	else if (ft_strncmp(input, "exit", 4) == 0)
+	else if (ft_strncmp(shell->input, "exit", 4) == 0)
 	{
-		//ft_exit(input, shell);
+		//ft_exit(shell->input, shell);
 		return (1);
 	}
-	else if (ft_strncmp(input, "pwd", 3) == 0)
+	else if (ft_strncmp(shell->input, "pwd", 3) == 0)
 	{
-		//ft_pwd(input, shell);
+		//ft_pwd(shell->input, shell);
 		return (1);
 	}
-	else if (ft_strncmp(input, "echo", 4) == 0)
+	else if (ft_strncmp(shell->input, "echo", 4) == 0)
 	{
-		//ft_echo(input, shell);
+		//ft_echo(shell->input, shell);
 		return (1);
 	}
 	return (0);
@@ -59,36 +59,7 @@ int	print_env(t_env *env)
 
 int	ft_cd(char *input, t_shell *shell)
 {
-	char	*path;
-	char	*oldpwd;
 
-	path = ft_strtrim(input + 2, " ");
-	if (!path)
-	{
-		path = get_env_value("HOME", shell->env);
-		if (!path)
-		{
-			ft_putstr_fd("cd: HOME not set\n", 2);
-			return (1);
-		}
-	}
-	oldpwd = getcwd(NULL, 0);
-	if (chdir(path) == -1)
-	{
-		ft_putstr_fd("cd: ", 2);
-		ft_putstr_fd(path, 2);
-		ft_putstr_fd(": ", 2);
-		ft_putstr_fd(strerror(errno), 2);
-		ft_putstr_fd("\n", 2);
-	}
-	else
-	{
-		set_env_value("OLDPWD", oldpwd, shell->env);
-		set_env_value("PWD", getcwd(NULL, 0), shell->env);
-	}
-	free(path);
-	free(oldpwd);
-	return(1);
 }
 
 char	*get_env_value(char *key, t_env *env)
