@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbaniatt <tbaniatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025-02-22 14:10:36 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025-02-22 14:10:36 by tbaniatt         ###   ########.fr       */
+/*   Created: 2025/02/22 14:10:36 by tbaniatt          #+#    #+#             */
+/*   Updated: 2025/02/24 00:16:08 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	it_is_builtin(t_shell *shell)
 {
 	if (ft_strncmp(shell->input, "cd", 2) == 0)
-		return(ft_cd(shell->input, shell));
+		return(ft_cd(shell));
 	else if (ft_strncmp(shell->input, "env", 3) == 0)
 		return (print_env(shell->env));
 	else if (ft_strncmp(shell->input, "export", 6) == 0)
@@ -35,7 +35,7 @@ int	it_is_builtin(t_shell *shell)
 	}
 	else if (ft_strncmp(shell->input, "pwd", 3) == 0)
 	{
-		//ft_pwd(shell->input, shell);
+		ft_pwd(shell->input, shell);
 		return (1);
 	}
 	else if (ft_strncmp(shell->input, "echo", 4) == 0)
@@ -68,19 +68,19 @@ int	ft_cd(t_shell *shell)
 	{
 		path = get_env_value("HOME", shell->env);
 		if (!path)
-			return (error_message("HOME not set"));
+			return (shell_error_message("HOME not set"));
 	}
 	oldpwd = getcwd(NULL, 0);
 	if (!oldpwd)
-		return (error_message(strerror(errno)));
+		return (shell_error_message(strerror(errno)));
 	if (chdir(path) == -1)
 	{
 		free(oldpwd);
-		return (error_message(strerror(errno)));
+		return (shell_error_message(strerror(errno)));
 	}
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
-		return (error_message(strerror(errno)));
+		return (shell_error_message(strerror(errno)));
 	set_env_value("OLDPWD", oldpwd, shell->env);
 	set_env_value("PWD", pwd, shell->env);
 	free(oldpwd);
@@ -88,7 +88,7 @@ int	ft_cd(t_shell *shell)
 	return (1);
 }
 
-int	error_message(char *message)
+int	shell_error_message(char *message)
 {
 	ft_putstr_fd("minishell: ", 2);
 	ft_putstr_fd(message, 2);
@@ -141,3 +141,21 @@ void	set_env_value(char *key, char *value, t_env *env)
 	env->next = tmp;
 }
 
+void	ft_pwd(char *input, t_shell *shell)
+{
+	char	*pwd;
+
+	(void)input;
+	pwd = get_env_value("PWD", shell->env);
+	if (!pwd)
+	{
+		pwd = getcwd(NULL, 0);
+		if (!pwd)
+		{
+			shell_error_message(strerror(errno));
+			return ;
+		}
+	}
+	ft_putstr_fd(pwd, 1);
+	ft_putstr_fd("\n", 1);
+}

@@ -6,7 +6,7 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 19:12:42 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/02/08 04:02:09 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/02/24 00:16:25 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,9 @@ void    setup_signals(void);
 int    it_is_builtin(t_shell *shell);
 int    ft_cd(t_shell *shell);
 int	print_env(t_env *env);
-int	ft_cd(char *input, t_shell *shell);
 void	set_env_value(char *key, char *value, t_env *env);
-
-
 char	*get_env_value(char *key, t_env *env);
+int	shell_error_message(char *message);
+void    ft_pwd(char *input, t_shell *shell);
 
 #endif
