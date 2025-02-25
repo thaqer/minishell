@@ -1,53 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   environment.c                                      :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/25 13:39:41 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/02/25 13:40:34 by tbaniatt         ###   ########.fr       */
+/*   Created: 2025/02/25 13:39:17 by tbaniatt          #+#    #+#             */
+/*   Updated: 2025/02/25 13:39:20 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_env	*get_env(char **env)
+char	**env_list_to_array(t_env *env)
 {
-	t_env	*env_list;
-	t_env	*tmp;
+	char	**env_array;
 	int		i;
+	t_env	*tmp;
 
 	i = 0;
-	env_list = NULL;
-	while (env[i])
+	tmp = env;
+	while (tmp)
 	{
-		tmp = malloc(sizeof(t_env));
-		if (!tmp)
-			return (NULL);
-		tmp->value = ft_strdup(env[i]);
-		if (!tmp->value)
-			return (NULL);
-		tmp->next = 0;
-		if (!env_list)
-			env_list = tmp;
-		else
-		{
-			tmp->next = env_list;
-			env_list = tmp;
-		}
 		i++;
+		tmp = tmp->next;
 	}
-	return (env_list);
-}
-
-int	print_env(t_env *env)
-{
+	env_array = malloc(sizeof(char *) * (i + 1));
+	if (!env_array)
+		return (NULL);
+	i = 0;
 	while (env)
 	{
-		ft_putstr_fd(env->value, 1);
-		ft_putstr_fd("\n", 1);
+		env_array[i] = ft_strdup(env->value);
+		if (!env_array[i])
+		{
+			ft_free_array(env_array);
+			return (NULL);
+		}
 		env = env->next;
+		i++;
 	}
-	return (1);
+	env_array[i] = NULL;
+	return (env_array);
 }
