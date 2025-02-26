@@ -6,7 +6,7 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 13:25:45 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/02/25 13:26:41 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/02/26 20:15:05 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ int	ft_cd(t_shell *shell)
 	char	*pwd;
 
 	path = ft_strtrim(shell->input + 2, " ");
-	if (!path)
+	if (!path || ft_strlen(path) == 0 || ft_strncmp(path, "~", 1) == 0)
 	{
+		free(path);
 		path = get_env_value("HOME", shell->env);
 		if (!path)
 			return (shell_error_message("HOME not set"));
@@ -36,11 +37,16 @@ int	ft_cd(t_shell *shell)
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
 		return (shell_error_message(strerror(errno)));
-	set_env_value("OLDPWD", oldpwd, shell->env);
-	set_env_value("PWD", pwd, shell->env);
-	free(oldpwd);
-	free(pwd);
+	end_cd_process(shell, oldpwd, pwd);
 	return (1);
+}
+
+void    end_cd_process(t_shell *shell, char *oldpwd, char *pwd)
+{
+        set_env_value("OLDPWD", oldpwd, shell->env);
+        set_env_value("PWD", pwd, shell->env);
+        free(oldpwd);
+        free(pwd);
 }
 
 char	*get_env_value(char *key, t_env *env)
