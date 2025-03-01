@@ -12,7 +12,6 @@
 
 #include "../minishell.h"
 
-
 void	ft_pwd(char *input, t_shell *shell)
 {
 	char	*pwd;
@@ -31,4 +30,3 @@ void	ft_pwd(char *input, t_shell *shell)
 	ft_putstr_fd(pwd, 1);
 	ft_putstr_fd("\n", 1);
 }
-

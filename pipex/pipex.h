@@ -6,7 +6,7 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 10:43:02 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/02/09 20:40:36 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/02/28 10:38:08 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,15 @@
 
 typedef struct s_cmd
 {
-	pid_t	*pid;
-	char	**cmds;
+	pid_t	pid1;
+	pid_t	pid2;
+	char	*cmd;
 	char	*paths;
 	char	**cmd_path;
-	char	***args;
-	int		*fd;
-	int		**tubes;
-	int		cmd_count;
+	char	**args;
+	int		fd1;
+	int		fd2;
+	int		tube[2];
 }			t_cmd;
 
 void		error_message(char *message, t_cmd *cmd);
@@ -46,8 +47,5 @@ void		child2(t_cmd *cmd, char **argv, char **env);
 void		parent_free(t_cmd *pipex);
 void		close_command(t_cmd *cmd);
 void		error_process(char *massage, t_cmd *cmd);
-void		create_children(t_cmd *cmd, char **env);
-void		child_process(t_cmd *cmd, int i, char **env);
-void		close_pipes(t_cmd *cmd);
 
 #endif

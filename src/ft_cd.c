@@ -41,12 +41,12 @@ int	ft_cd(t_shell *shell)
 	return (1);
 }
 
-void    end_cd_process(t_shell *shell, char *oldpwd, char *pwd)
+void	end_cd_process(t_shell *shell, char *oldpwd, char *pwd)
 {
-        set_env_value("OLDPWD", oldpwd, shell->env);
-        set_env_value("PWD", pwd, shell->env);
-        free(oldpwd);
-        free(pwd);
+	set_env_value("OLDPWD", oldpwd, shell->env);
+	set_env_value("PWD", pwd, shell->env);
+	free(oldpwd);
+	free(pwd);
 }
 
 char	*get_env_value(char *key, t_env *env)
@@ -56,7 +56,8 @@ char	*get_env_value(char *key, t_env *env)
 	key_len = ft_strlen(key);
 	while (env)
 	{
-		if (ft_strncmp(env->value, key, key_len) == 0 && env->value[key_len] == '=')
+		if (ft_strncmp(env->value, key, key_len) == 0
+			&& env->value[key_len] == '=')
 		{
 			return (ft_strdup(env->value + key_len + 1));
 		}
@@ -76,7 +77,8 @@ void	set_env_value(char *key, char *value, t_env *env)
 	new_value = ft_strjoin(new_value, value);
 	while (env)
 	{
-		if (ft_strncmp(env->value, key, key_len) == 0 && env->value[key_len] == '=')
+		if (ft_strncmp(env->value, key, key_len) == 0
+			&& env->value[key_len] == '=')
 		{
 			free(env->value);
 			env->value = new_value;
