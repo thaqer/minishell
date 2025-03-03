@@ -6,7 +6,7 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 19:12:42 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/02/28 11:19:44 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/03/01 20:46:51 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int					print_env(t_env *env);
 void				set_env_value(char *key, char *value, t_env *env);
 char				*get_env_value(char *key, t_env *env);
 int					shell_error_message(char *message);
-void				ft_pwd(char *input, t_shell *shell);
+int				ft_pwd(char *input, t_shell *shell);
 char				**env_list_to_array(t_env *env);
 void				end_cd_process(t_shell *shell, char *oldpwd, char *pwd);
 int				ft_export(char *input, t_shell *shell);

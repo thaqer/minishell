@@ -9,6 +9,8 @@ SRCS = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c\
 	src/builtin.c\
 	src/ft_cd.c\
 	src/ft_pwd.c\
+	src/ft_export.c\
+	src/ft_exit.c\
 	src/utils.c\
 
 NAME = minishell
