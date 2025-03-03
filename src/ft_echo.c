@@ -14,5 +14,31 @@
 
 int	ft_echo(char *input, t_shell *shell)
 {
-        
+	int	i;
+	int	n_flag;
+
+	i = 4;
+	n_flag = 0;
+	if (ft_strncmp(input + i, "-n", 2) == 0)
+	{
+		n_flag = 1;
+		while (input[i] == 'n')
+			i++;
+	}
+	while (input[i] == ' ')
+		i++;
+	while (input[i])
+	{
+		if (input[i] == '$')
+			i = ft_dollar(input, i, shell);
+		else
+			write(1, &input[i], 1);
+		i++;
+	}
+	if (!n_flag)
+		write(1, "\n", 1);
+	return (1);
 }
+
+int	ft_dollar(char *input, int i, t_shell *shell)
+

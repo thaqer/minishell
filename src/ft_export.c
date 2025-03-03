@@ -13,6 +13,8 @@
 #include "../minishell.h"
 
 
+//handle "export key with no value (there is no =)"
+//handle "export key with no value (there is = but no value)"
 int	ft_export(char *input, t_shell *shell)
 {
 	char	*key;
@@ -20,17 +22,9 @@ int	ft_export(char *input, t_shell *shell)
 	char	*tmp;
 
 	key = ft_strtrim(input + 6, " ");
-	if (!key || ft_strlen(key) == 0)
-	{
-		free(key);
-		return (1);
-	}
-	value = ft_strchr(key, '=');
-	if (value)
-	{
-		*value = '\0';
-		value++;
-	}
+	veiled_key(key, shell);
+	//hnadle "export with no argument"
+	handle_equal_sign(key, &value);
 	tmp = get_env_value(key, shell->env);
 	if (tmp)
 	{
@@ -42,6 +36,7 @@ int	ft_export(char *input, t_shell *shell)
 	free(key);
 	return (1);
 }
+
 
 void	add_env(char *key, char *value, t_env *env)
 {
@@ -65,4 +60,49 @@ void	add_env(char *key, char *value, t_env *env)
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = new;
+}
+
+//handle "if key is (char or digit(use ft_islnum) or _) and begin with (char or _)"  Done ;)
+void	veiled_key(char *key, t_shell *shell)
+{
+	int	i;
+
+	i = 0;
+	while (key[i] == ' ')
+		i++;
+	if (key[0] == '_' || ft_isalpha(key[0]))
+	{
+		while (key[i] && key[i] != ' ' && key[i] != '=')
+		{
+			if (!ft_isalnum(key[i]) && key[i] != '_')
+			{
+				shell->exit_status = 1;
+				ft_putstr_fd("minishell: export: `", 2);
+				ft_putstr_fd(key, 2);
+				ft_putstr_fd("': not a valid identifier\n", 2);
+				return ;
+			}
+		}
+		if (key[i] != '=')
+		{
+			shell->exit_status = 1;
+			ft_putstr_fd("minishell: export: `", 2);
+			ft_putstr_fd(key, 2);
+			ft_putstr_fd("': not a valid identifier\n", 2);
+		}
+	}	
+}
+
+void	handle_equal_sign(char *key, char *value)
+{
+	int	i;
+
+	i = 0;
+	if (ft_strchr(key, '='))
+	{
+		*value = key[i];
+		key[i] = '\0';
+	}
+	else
+		*value = '\0';
 }

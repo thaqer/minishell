@@ -47,6 +47,7 @@ typedef struct s_shell
 	char			*path;
 	char			*command;
 	char			*full_path;
+	int				exit_status;
 }					t_shell;
 
 t_env				*get_env(char **env);
