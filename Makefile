@@ -18,6 +18,7 @@ NAME = minishell
 LIBFT = libft/libft.a
 PRINTF = printf/libftprintf.a
 
+
 LIBS = -lreadline
 
 OBJ = $(addprefix objs/, $(SRCS:.c=.o))

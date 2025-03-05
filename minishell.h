@@ -15,7 +15,6 @@
 
 # include "get_next_line/get_next_line.h"
 # include "libft/libft.h"
-# include "pipex/pipex.h"
 # include "printf/ft_printf.h"
 # include <errno.h>
 # include <limits.h>
@@ -41,6 +40,7 @@ typedef struct s_env
 typedef struct s_shell
 {
 	t_env			*env;
+	pid_t			pid;
 	char			*input;
 	char			**args;
 	char			**paths;
@@ -62,9 +62,17 @@ int					print_env(t_env *env);
 void				set_env_value(char *key, char *value, t_env *env);
 char				*get_env_value(char *key, t_env *env);
 int					shell_error_message(char *message);
-int				ft_pwd(char *input, t_shell *shell);
+int					ft_pwd(char *input, t_shell *shell);
 char				**env_list_to_array(t_env *env);
 void				end_cd_process(t_shell *shell, char *oldpwd, char *pwd);
-int				ft_export(char *input, t_shell *shell);
+int					ft_export(char *input, t_shell *shell);
 void				add_env(char *key, char *value, t_env *env);
+int					ft_exit(char *input, t_shell *shell);
+void				veiled_key(char *key, t_shell *shell);
+void				handle_equal_sign(char *key, char *value);
+char				*get_path(char **env, t_shell *shell);
+char				*get_command(char **cmd_path, char *cmd);
+// int					ft_unset(char *input, t_shell *shell);
+// int					ft_echo(char *input, t_shell *shell);
+
 #endif

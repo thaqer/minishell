@@ -34,5 +34,6 @@ int	it_is_builtin(t_shell *shell)
 		// ft_echo(shell->input, shell);
 		return (1);
 	}
-	return (0);
+	else
+		return (0);
 }

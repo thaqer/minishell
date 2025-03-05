@@ -19,30 +19,53 @@ int	ft_export(char *input, t_shell *shell)
 {
 	char	*key;
 	char	*value;
-	char	*tmp;
+	char	*equal_sign;
 
 	key = ft_strtrim(input + 6, " ");
-	veiled_key(key, shell);
-	//hnadle "export with no argument"
-	handle_equal_sign(key, &value);
-	tmp = get_env_value(key, shell->env);
-	if (tmp)
+	equal_sign = ft_strchr(key, '=');
+	if (equal_sign)
 	{
-		free(tmp);
-		set_env_value(key, value, shell->env);
+		value = ft_strdup(equal_sign + 1);
+		*equal_sign = '\0';
 	}
+	else
+		value = NULL;
+	veiled_key(key, shell);
+	if (shell->exit_status == 1)
+	{
+		free(key);
+		return (1);
+	}
+	if (get_env_value(key, shell->env))
+		set_env_value(key, value, shell->env);
 	else
 		add_env(key, value, shell->env);
 	free(key);
 	return (1);
 }
 
-
 void	add_env(char *key, char *value, t_env *env)
 {
 	t_env	*new;
 	t_env	*tmp;
 
+	tmp = env;
+	while (tmp)
+	{
+		if (ft_strncmp(tmp->value, key, ft_strlen(key)) == 0 && tmp->value[ft_strlen(key)] == '=')
+		{
+			free(tmp->value);
+			tmp->value = ft_strjoin(key, "=");
+			if (value)
+			{
+				char *tmp_value = ft_strjoin(tmp->value, value);
+				free(tmp->value);
+				tmp->value = tmp_value;
+			}
+			return;
+		}
+		tmp = tmp->next;
+	}
 	new = malloc(sizeof(t_env));
 	if (!new)
 		shell_error_message(strerror(errno));
@@ -51,7 +74,9 @@ void	add_env(char *key, char *value, t_env *env)
 		shell_error_message(strerror(errno));
 	if (value)
 	{
-		new->value = ft_strjoin(new->value, value);
+		char *tmp_value = ft_strjoin(new->value, value);
+		free(new->value);
+		new->value = tmp_value;
 		if (!new->value)
 			shell_error_message(strerror(errno));
 	}
@@ -62,7 +87,6 @@ void	add_env(char *key, char *value, t_env *env)
 	tmp->next = new;
 }
 
-//handle "if key is (char or digit(use ft_islnum) or _) and begin with (char or _)"  Done ;)
 void	veiled_key(char *key, t_shell *shell)
 {
 	int	i;
@@ -82,27 +106,18 @@ void	veiled_key(char *key, t_shell *shell)
 				ft_putstr_fd("': not a valid identifier\n", 2);
 				return ;
 			}
+			i++;
 		}
-		if (key[i] != '=')
-		{
+		if (key[i] == '=')
+			shell->exit_status = 0;
+		else
 			shell->exit_status = 1;
-			ft_putstr_fd("minishell: export: `", 2);
-			ft_putstr_fd(key, 2);
-			ft_putstr_fd("': not a valid identifier\n", 2);
-		}
-	}	
-}
-
-void	handle_equal_sign(char *key, char *value)
-{
-	int	i;
-
-	i = 0;
-	if (ft_strchr(key, '='))
-	{
-		*value = key[i];
-		key[i] = '\0';
 	}
 	else
-		*value = '\0';
+	{
+		shell->exit_status = 1;
+		ft_putstr_fd("minishell: export: `", 2);
+		ft_putstr_fd(key, 2);
+		ft_putstr_fd("': not a valid identifier\n", 2);
+	}
 }

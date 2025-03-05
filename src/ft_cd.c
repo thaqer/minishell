@@ -43,8 +43,8 @@ int	ft_cd(t_shell *shell)
 
 void	end_cd_process(t_shell *shell, char *oldpwd, char *pwd)
 {
-	set_env_value("OLDPWD", oldpwd, shell->env);
-	set_env_value("PWD", pwd, shell->env);
+	set_env_value("OLDPWD=", oldpwd, shell->env);
+	set_env_value("PWD=", pwd, shell->env);
 	free(oldpwd);
 	free(pwd);
 }
@@ -73,7 +73,6 @@ void	set_env_value(char *key, char *value, t_env *env)
 	t_env	*tmp;
 
 	key_len = ft_strlen(key);
-	new_value = ft_strjoin(key, "=");
 	new_value = ft_strjoin(new_value, value);
 	while (env)
 	{

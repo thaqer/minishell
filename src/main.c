@@ -25,6 +25,19 @@ void	ft_free_array(char **array)
 	free(array);
 }
 
+void	free_env(t_env *env)
+{
+	t_env	*tmp;
+
+	while (env)
+	{
+		tmp = env;
+		env = env->next;
+		free(tmp->value);
+		free(tmp);
+	}
+}
+
 int	main(int ac, char **av, char **env)
 {
 	t_shell	shell;
@@ -49,6 +62,7 @@ int	main(int ac, char **av, char **env)
 			execute_command(shell.input, &shell);
 		free(shell.input);
 	}
+	free_env(shell.env);
 	rl_clear_history();
 	return (0);
 }

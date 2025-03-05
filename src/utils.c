@@ -18,6 +18,8 @@ char	**env_list_to_array(t_env *env)
 	int		i;
 	t_env	*tmp;
 
+	if (!env)
+		return (NULL);
 	i = 0;
 	tmp = env;
 	while (tmp)
