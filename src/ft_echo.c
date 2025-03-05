@@ -41,4 +41,3 @@ int	ft_echo(char *input, t_shell *shell)
 }
 
 int	ft_dollar(char *input, int i, t_shell *shell)
-

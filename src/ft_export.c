@@ -6,15 +6,14 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 12:06:47 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/02/28 14:44:43 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/03/06 01:38:14 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-
-//handle "export key with no value (there is no =)"
-//handle "export key with no value (there is = but no value)"
+// handle "export key with no value (there is no =)"
+// handle "export key with no value (there is = but no value)"
 int	ft_export(char *input, t_shell *shell)
 {
 	char	*key;
@@ -34,35 +33,57 @@ int	ft_export(char *input, t_shell *shell)
 	if (shell->exit_status == 1)
 	{
 		free(key);
+		free(value);
 		return (1);
 	}
+	handle_value(char *value);
 	if (get_env_value(key, shell->env))
 		set_env_value(key, value, shell->env);
 	else
 		add_env(key, value, shell->env);
 	free(key);
+	free(value);
 	return (1);
+}
+
+void	handle_value(char *value)
+{
+	if (value)
+	{
+		if (value[0] == '\"' && value[ft_strlen(value) - 1] == '\"')
+		{
+			value[ft_strlen(value) - 1] = '\0';
+			value++;
+		}
+		if (value[0] == '\'' && value[ft_strlen(value) - 1] == '\'')
+		{
+			value[ft_strlen(value) - 1] = '\0';
+			value++;
+		}
+	}
 }
 
 void	add_env(char *key, char *value, t_env *env)
 {
 	t_env	*new;
 	t_env	*tmp;
+	char	*tmp_value;
+	char	*tmp_value;
 
 	tmp = env;
 	while (tmp)
 	{
-		if (ft_strncmp(tmp->value, key, ft_strlen(key)) == 0 && tmp->value[ft_strlen(key)] == '=')
+		if (ft_strncmp(tmp->value, key, ft_strlen(key)) == 0)
 		{
 			free(tmp->value);
 			tmp->value = ft_strjoin(key, "=");
 			if (value)
 			{
-				char *tmp_value = ft_strjoin(tmp->value, value);
+				tmp_value = ft_strjoin(tmp->value, value);
 				free(tmp->value);
 				tmp->value = tmp_value;
 			}
-			return;
+			return ;
 		}
 		tmp = tmp->next;
 	}
@@ -74,7 +95,7 @@ void	add_env(char *key, char *value, t_env *env)
 		shell_error_message(strerror(errno));
 	if (value)
 	{
-		char *tmp_value = ft_strjoin(new->value, value);
+		tmp_value = ft_strjoin(new->value, value);
 		free(new->value);
 		new->value = tmp_value;
 		if (!new->value)
@@ -108,10 +129,6 @@ void	veiled_key(char *key, t_shell *shell)
 			}
 			i++;
 		}
-		if (key[i] == '=')
-			shell->exit_status = 0;
-		else
-			shell->exit_status = 1;
 	}
 	else
 	{

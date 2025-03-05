@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pwd.c                                           :+:      :+:    :+:   */
+/*   expantion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/25 13:27:49 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/03/01 16:06:56 by tbaniatt         ###   ########.fr       */
+/*   Created: 2025/03/06 01:41:42 by tbaniatt          #+#    #+#             */
+/*   Updated: 2025/03/06 01:43:30 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	ft_pwd(char *input, t_shell *shell)
+void	expand_env(t_shell *shell)
 {
-	char	*pwd;
+	int		i;
+	char	*tmp;
+	char	*tmp2;
 
-	(void)input;
-	pwd = get_env_value("PWD", shell->env);
-	if (!pwd)
+	i = 0;
+	while (shell->args[i])
 	{
-		pwd = getcwd(NULL, 0);
-		if (!pwd)
+		if (shell->args[i][0] == '$')
 		{
-			shell_error_message(strerror(errno));
-			return (1);
+			tmp = ft_strdup(shell->args[i] + 1);
+			tmp2 = get_env_value(tmp, shell->env);
+			free(tmp);
+			free(shell->args[i]);
+			shell->args[i] = tmp2;
 		}
+		i++;
 	}
-	ft_putstr_fd(pwd, 1);
-	ft_putstr_fd("\n", 1);
-	return (1);
 }

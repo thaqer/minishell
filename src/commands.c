@@ -6,7 +6,7 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 01:24:16 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/02/25 13:39:00 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/03/06 01:00:58 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ void	execute_command(char *input, t_shell *shell)
 {
 	int		status;
 	char	*temp;
-	int		i;
 
-	i = 0;
 	temp = get_path(env_list_to_array(shell->env), NULL);
 	shell->paths = ft_split(temp, ':');
 	shell->args = ft_split(input, ' ');
@@ -28,7 +26,7 @@ void	execute_command(char *input, t_shell *shell)
 		shell_error_message(strerror(errno));
 		ft_free_array(shell->paths);
 		ft_free_array(shell->args);
-		return;
+		return ;
 	}
 	shell->pid = fork();
 	if (shell->pid == 0)
@@ -63,9 +61,9 @@ char	*get_path(char **env, t_shell *shell)
 
 char	*get_command(char **cmd_path, char *cmd)
 {
-	int		i;
-	char	*tmp;
-	char	*tmp2;
+	int i;
+	char *tmp;
+	char *tmp2;
 
 	if (!cmd || !cmd_path)
 		return (NULL);

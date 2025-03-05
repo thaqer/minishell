@@ -6,7 +6,7 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 19:12:42 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/03/01 20:46:51 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/03/06 01:17:26 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ int					ft_export(char *input, t_shell *shell);
 void				add_env(char *key, char *value, t_env *env);
 int					ft_exit(char *input, t_shell *shell);
 void				veiled_key(char *key, t_shell *shell);
-void				handle_equal_sign(char *key, char *value);
 char				*get_path(char **env, t_shell *shell);
 char				*get_command(char **cmd_path, char *cmd);
+int 	     			 ft_unset(char *input, t_shell *shell);
 // int					ft_unset(char *input, t_shell *shell);
 // int					ft_echo(char *input, t_shell *shell);
 

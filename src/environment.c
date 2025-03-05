@@ -6,7 +6,7 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 13:39:41 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/02/25 13:40:34 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/03/06 02:15:02 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,56 @@ int	print_env(t_env *env)
 		env = env->next;
 	}
 	return (1);
+}
+
+char	*get_env_value(char *key, t_env *env)
+{
+	size_t	key_len;
+
+	key_len = ft_strlen(key);
+	while (env)
+	{
+		if (ft_strncmp(env->value, key, key_len) == 0
+			&& env->value[key_len] == '=')
+		{
+			return (ft_strdup(env->value + key_len + 1));
+		}
+		env = env->next;
+	}
+	return (NULL);
+}
+
+void	set_env_value(char *key, char *value, t_env *env)
+{
+	size_t	key_len;
+	char	*new_value;
+	t_env	*tmp;
+	char	*tmp_value;
+
+	key_len = ft_strlen(key);
+	new_value = ft_strjoin(key, "=");
+	if (value)
+	{
+		tmp_value = ft_strjoin(new_value, value);
+		free(new_value);
+		new_value = tmp_value;
+	}
+	while (env)
+	{
+		if (ft_strncmp(env->value, key, key_len) == 0)
+		{
+			free(env->value);
+			env->value = new_value;
+			return ;
+		}
+		if (!env->next)
+			break ;
+		env = env->next;
+	}
+	tmp = malloc(sizeof(t_env));
+	if (!tmp)
+		return ;
+	tmp->value = new_value;
+	tmp->next = NULL;
+	env->next = tmp;
 }

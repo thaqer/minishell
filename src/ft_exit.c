@@ -13,7 +13,7 @@
 #include "../minishell.h"
 
 int	ft_exit(char *input, t_shell *shell)
-//here we need to call a functions to clean up the memory and free the linked list
+// here we need to call a functions to clean up the memory and free the linked list
 {
 	(void)input;
 	(void)shell;
