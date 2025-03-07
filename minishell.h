@@ -6,7 +6,7 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 19:12:42 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/03/06 01:17:26 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:28:59 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,18 @@ void				veiled_key(char *key, t_shell *shell);
 char				*get_path(char **env, t_shell *shell);
 char				*get_command(char **cmd_path, char *cmd);
 int 	     			 ft_unset(char *input, t_shell *shell);
-// int					ft_unset(char *input, t_shell *shell);
-// int					ft_echo(char *input, t_shell *shell);
+void				handle_value(char *value);
+int					list_size(t_env *env);
+int					ft_unset(char *input, t_shell *shell);
+int					ft_echo(char *input, t_shell *shell);
+
+//expantion.c
+int	expand_env(t_shell *shell, char *input, int i);
+
+//ft_echo.c
+int	ft_echo(char *input, t_shell *shell);
+int	handle_quotations(t_shell *shell, char *input, int i);
+int	single_quote(t_shell *shell, char *input, int i);
+int	double_quote(t_shell *shell, char *input, int i);
 
 #endif

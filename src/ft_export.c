@@ -6,7 +6,7 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 12:06:47 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/03/06 01:38:14 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/03/07 02:47:43 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_export(char *input, t_shell *shell)
 		free(value);
 		return (1);
 	}
-	handle_value(char *value);
+	handle_value(value);
 	if (get_env_value(key, shell->env))
 		set_env_value(key, value, shell->env);
 	else
@@ -67,7 +67,6 @@ void	add_env(char *key, char *value, t_env *env)
 {
 	t_env	*new;
 	t_env	*tmp;
-	char	*tmp_value;
 	char	*tmp_value;
 
 	tmp = env;

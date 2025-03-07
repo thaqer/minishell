@@ -6,7 +6,7 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 13:39:17 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/03/06 01:52:25 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/03/07 02:49:28 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ char	**env_list_to_array(t_env *env)
 {
 	char	**env_array;
 	int		i;
-	t_env	*tmp;
 
 	if (!env)
 		return (NULL);

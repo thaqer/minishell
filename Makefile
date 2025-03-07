@@ -13,6 +13,9 @@ SRCS = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c\
 	src/ft_exit.c\
 	src/utils.c\
 	src/ft_unset.c\
+	src/ft_echo.c\
+	src/expantion.c\
+	
 
 NAME = minishell
 

@@ -6,7 +6,7 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:10:36 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/03/06 01:16:26 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:17:31 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@ int	it_is_builtin(t_shell *shell)
 	else if (ft_strncmp(shell->input, "unset", 5) == 0)
 		return (ft_unset(shell->input, shell));
 	else if (ft_strncmp(shell->input, "echo", 4) == 0)
-	{
-		// ft_echo(shell->input, shell);
-		return (1);
-	}
+		return (ft_echo(shell->input, shell));
 	else
 		return (0);
 }
