@@ -6,37 +6,11 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 19:12:12 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/02/08 03:35:43 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/03/08 00:18:27 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-void	ft_free_array(char **array)
-{
-	int	i;
-
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-}
-
-void	free_env(t_env *env)
-{
-	t_env	*tmp;
-
-	while (env)
-	{
-		tmp = env;
-		env = env->next;
-		free(tmp->value);
-		free(tmp);
-	}
-}
 
 int	main(int ac, char **av, char **env)
 {

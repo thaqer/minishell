@@ -6,7 +6,7 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 01:41:42 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/03/07 23:56:30 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/03/08 00:09:24 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	expand_env(t_shell *shell, char *key, int i)
 		if (value)
 		{
 			ft_putstr_fd(value, 1);
-			free(value);
+			// free(value); // Remove this line to avoid premature free
 		}
 		free(temp);
 	}
-	return (j);
+	return (j - 1);
 }
