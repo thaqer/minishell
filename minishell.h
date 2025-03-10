@@ -37,9 +37,16 @@ typedef struct s_env
 	struct s_env	*next;
 }					t_env;
 
+typedef struct s_token
+{
+	char			*value;
+	struct s_token	*next;
+}					t_token;
+
 typedef struct s_shell
 {
 	t_env			*env;
+	t_token			*token;
 	pid_t			pid;
 	char			*input;
 	char			**args;
@@ -72,6 +79,7 @@ int				ft_export(char *input, t_shell *shell);
 void				handle_value(char *value);
 void				add_env(char *key, char *value, t_env *env);
 void				veiled_key(char *key, t_shell *shell);
+void	process_export(char **temp, t_shell *shell);
 
 // ft_unset.c
 int				ft_unset(char *input, t_shell *shell);
