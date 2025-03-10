@@ -55,7 +55,6 @@ t_env				*get_env(char **env);
 int				print_env(t_env *env);
 void				set_env_value(char *key, char *value, t_env *env);
 char				*get_env_value(char *key, t_env *env);
-void				add_env(char *key, char *value, t_env *env);
 int				list_size(t_env *env);
 
 // builtin.c
@@ -70,6 +69,9 @@ int				ft_pwd(char *input, t_shell *shell);
 
 // ft_export.c
 int				ft_export(char *input, t_shell *shell);
+void				handle_value(char *value);
+void				add_env(char *key, char *value, t_env *env);
+void				veiled_key(char *key, t_shell *shell);
 
 // ft_unset.c
 int				ft_unset(char *input, t_shell *shell);
