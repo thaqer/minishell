@@ -12,38 +12,51 @@
 
 #include "../minishell.h"
 
-// handle "export key with no value (there is no =)"
-// handle "export key with no value (there is = but no value)"
+//split this function into 2 functions to be less than 25 lines
+//one is the mean function and the other for free the things
+
 int	ft_export(char *input, t_shell *shell)
 {
 	char	*key;
 	char	*value;
+	char	**temp;
 	char	*equal_sign;
 
 	key = ft_strtrim(input + 6, " ");
-	equal_sign = ft_strchr(key, '=');
-	if (equal_sign)
+	temp = ft_split(key, ' ');
+	if (!temp)
+		shell_error_message(strerror(errno));
+	while (*temp)
 	{
-		value = ft_strdup(equal_sign + 1);
-		*equal_sign = '\0';
-	}
-	else
-		value = NULL;
-	veiled_key(key, shell);
-	if (shell->exit_status == 1)
-	{
-		free(key);
+		equal_sign = ft_strchr(*temp, '=');
+		if (equal_sign)
+		{
+			value = ft_strdup(equal_sign + 1);
+			*equal_sign = '\0';
+		}
+		else if (!equal_sign)
+		{
+			temp++;
+			continue;
+		}
+		veiled_key(*temp, shell);
+		if (shell->exit_status == 1)
+		{
+			free(key);
+			free(value);
+			free(temp);
+			return (1);
+		}
+		handle_value(value);
+		if (get_env_value(*temp, shell->env))
+			set_env_value(*temp, value, shell->env);
+		else
+			add_env(*temp, value, shell->env);
 		free(value);
-		return (1);
+		temp++;
 	}
-	handle_value(value);
-	if (get_env_value(key, shell->env))
-		set_env_value(key, value, shell->env);
-	else
-		add_env(key, value, shell->env);
-	free(key);
-	free(value);
 	return (1);
+
 }
 
 void	handle_value(char *value)
