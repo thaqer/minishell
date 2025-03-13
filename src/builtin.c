@@ -21,7 +21,7 @@ int	it_is_builtin(t_shell *shell)
 	else if (ft_strncmp(shell->input, "export", 6) == 0)
 		return (ft_export(shell->input, shell));
 	else if (ft_strncmp(shell->input, "pwd", 3) == 0)
-		return (ft_pwd(shell->input, shell));
+		return (ft_pwd(shell));
 	else if (ft_strncmp(shell->input, "exit", 4) == 0)
 		return (ft_exit(shell->input, shell));
 	else if (ft_strncmp(shell->input, "unset", 5) == 0)

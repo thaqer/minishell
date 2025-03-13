@@ -21,8 +21,8 @@ void	tokenization(char *input, t_shell *shell)
 	while (*input)
 	{
 		start = input;
-		while (*input && *input != '\'' && *input != '\"' && *input != '|' 
-				&& *input != ';' && *input != '(' && *input != ')' 
+		while (*input != '|' && *input != ';' 
+			&& *input != '(' && *input != ')' 
 				&& *input != '<' && *input != '>')
 			input++;
 		end = input;

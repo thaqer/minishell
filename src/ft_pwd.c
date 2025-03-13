@@ -12,21 +12,22 @@
 
 #include "../minishell.h"
 
-int	ft_pwd(char *input, t_shell *shell)
+// re move lines 20-22 and line 30
+int	ft_pwd(t_shell *shell)
 {
 	char	*pwd;
 
-	(void)input;
-	pwd = get_env_value("PWD", shell->env);
+	// pwd = get_env_value("PWD", shell->env);
+	// if (!pwd)
+	// {
+	(void)shell;
+	pwd = getcwd(NULL, 0);
 	if (!pwd)
 	{
-		pwd = getcwd(NULL, 0);
-		if (!pwd)
-		{
-			shell_error_message(strerror(errno));
-			return (1);
-		}
+		shell_error_message(strerror(errno));
+		return (1);
 	}
+	// }
 	ft_putstr_fd(pwd, 1);
 	ft_putstr_fd("\n", 1);
 	return (1);

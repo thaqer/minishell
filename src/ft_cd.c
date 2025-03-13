@@ -12,6 +12,7 @@
 
 #include "../minishell.h"
 
+//handle this case "cd -" to go to the previous directory
 int	ft_cd(t_shell *shell)
 {
 	char	*path;

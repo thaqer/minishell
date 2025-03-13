@@ -28,7 +28,7 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-# define PROMPT "\033[94mdarkspace$ \033[0m"
+# define PROMPT "\033[95mdarkspace$ \033[0m"
 # define MAX_PATH 4096
 
 typedef struct s_env
@@ -72,7 +72,7 @@ int				ft_cd(t_shell *shell);
 void				end_cd_process(t_shell *shell, char *oldpwd, char *pwd);
 
 // ft_pwd.c
-int				ft_pwd(char *input, t_shell *shell);
+int				ft_pwd(t_shell *shell);
 
 // ft_export.c
 int				ft_export(char *input, t_shell *shell);

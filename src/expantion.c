@@ -27,7 +27,6 @@ int	expand_env(t_shell *shell, char *key, int i)
 		if (value)
 		{
 			ft_putstr_fd(value, 1);
-			// free(value); // Remove this line to avoid premature free
 		}
 		free(temp);
 	}
