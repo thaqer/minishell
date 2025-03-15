@@ -6,7 +6,7 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 19:12:42 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/03/08 00:36:11 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/03/15 18:16:26 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,8 @@ void				setup_signals(void);
 
 // tokenizer.c
 void				tokenization(char *input, t_shell *shell);
-int				handle_spscial_char(char *input, int x, t_shell *shell);
-int				handle_pipe(char *input, int x, t_shell *shell);
+int					handle_spscial_char(char *input, int x, t_shell *shell);
+int					handle_pipe(char *input, int x, t_shell *shell);
 void				print_token(t_shell *shell);
 
 // utils.c
