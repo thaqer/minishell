@@ -26,9 +26,12 @@
 # include <string.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
+# include <dirent.h>
+# include <fcntl.h>
 # include <unistd.h>
 
-# define PROMPT "\033[95mdarkspace$ \033[0m"
+# define PROMPT "\033[94mdarkspace\033[0m:~"
 # define MAX_PATH 4096
 
 typedef struct s_env
@@ -48,6 +51,8 @@ typedef struct s_shell
 	t_env			*env;
 	t_token			*token;
 	pid_t			pid;
+	int				pip_num;
+	char			*pwd;
 	char			*input;
 	char			**args;
 	char			**paths;
@@ -106,6 +111,12 @@ void				free_env(t_env *env);
 // signals.c
 void				handle_signal(int sig);
 void				setup_signals(void);
+
+// tokenizer.c
+void				tokenization(char *input, t_shell *shell);
+int				handle_spscial_char(char *input, int x, t_shell *shell);
+int				handle_pipe(char *input, int x, t_shell *shell);
+void				print_token(t_shell *shell);
 
 // utils.c
 char				**env_list_to_array(t_env *env);

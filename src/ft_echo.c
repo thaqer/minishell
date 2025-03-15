@@ -17,7 +17,7 @@ int	ft_echo(char *input, t_shell *shell)
 	int	i;
 	int	n_flag;
 
-	i = 4;
+	i = 5;
 	n_flag = 0;
 	if (ft_strncmp(input + i, "-n", 2) == 0)
 	{

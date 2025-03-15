@@ -2,19 +2,20 @@ CC = cc
 
 CFLAGS = -Wall -Werror -Wextra
 SRCS = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c\
-	src/main.c\
-	src/environment.c\
-	src/signals.c\
-	src/commands.c\
 	src/builtin.c\
-	src/ft_cd.c\
-	src/ft_pwd.c\
-	src/ft_export.c\
-	src/ft_exit.c\
-	src/utils.c\
-	src/ft_unset.c\
-	src/ft_echo.c\
+	src/commands.c\
+	src/environment.c\
 	src/expantion.c\
+	src/ft_cd.c\
+	src/ft_echo.c\
+	src/ft_exit.c\
+	src/ft_export.c\
+	src/ft_pwd.c\
+	src/ft_unset.c\
+	src/main.c\
+	src/signals.c\
+	src/tokenizer.c\
+	src/utils.c\
 	
 
 NAME = minishell
