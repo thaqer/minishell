@@ -6,18 +6,18 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 23:09:59 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/03/08 00:18:34 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/03/22 15:22:27 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 int	ft_exit(char *input, t_shell *shell)
-// here we need to call a functions to clean up the memory and free the linked list
 {
 	(void)input;
-	(void)shell;
-	exit(0);
+	cleanup(shell);
+	ft_putstr_fd("exit!\n", 1);
+	return (1);
 }
 
 void	ft_free_array(char **array)
@@ -43,5 +43,22 @@ void	free_env(t_env *env)
 		env = env->next;
 		free(tmp->value);
 		free(tmp);
+		tmp = NULL;
 	}
+}
+
+void	cleanup(t_shell *shell)
+{
+	if (shell->token)
+	{
+		free_token(shell);
+		shell->token = NULL;
+	}
+	if (shell->env)
+	{
+		free_env(shell->env);
+		shell->env = NULL;
+	}
+	ft_free_array(shell->paths);
+	ft_free_array(shell->args);
 }

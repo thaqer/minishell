@@ -12,8 +12,8 @@
 
 #include "../minishell.h"
 
-//split this function into 2 functions to be less than 25 lines
-//one is the mean function and the other for free the things
+// split this function into 2 functions to be less than 25 lines
+// one is the mean function and the other for free the things
 
 int	ft_export(char *input, t_shell *shell)
 {
@@ -37,7 +37,7 @@ int	ft_export(char *input, t_shell *shell)
 		else if (!equal_sign)
 		{
 			temp++;
-			continue;
+			continue ;
 		}
 		veiled_key(*temp, shell);
 		if (shell->exit_status == 1)
@@ -56,7 +56,6 @@ int	ft_export(char *input, t_shell *shell)
 		temp++;
 	}
 	return (1);
-
 }
 
 void	handle_value(char *value)

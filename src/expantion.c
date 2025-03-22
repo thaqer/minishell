@@ -11,11 +11,12 @@
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
 int	expand_env(t_shell *shell, char *key, int i)
 {
 	char	*value;
 	char	*temp;
-	int	j;
+	int		j;
 
 	j = i + 1;
 	while (key[j] && (ft_isalnum(key[j]) || key[j] == '_'))

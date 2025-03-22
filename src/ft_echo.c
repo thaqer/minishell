@@ -43,13 +43,13 @@ int	ft_echo(char *input, t_shell *shell)
 
 int	handle_quotations(t_shell *shell, char *input, int i)
 {
-		if (input[i] == '\"')
-			i = double_quote(shell, input, i);
-		else if (input[i] == '\'')
-			i = single_quote(shell, input, i);
-		return (i);
+	if (input[i] == '\"')
+		i = double_quote(shell, input, i);
+	else if (input[i] == '\'')
+		i = single_quote(shell, input, i);
+	return (i);
 }
-	
+
 int	single_quote(t_shell *shell, char *input, int i)
 {
 	(void)shell;

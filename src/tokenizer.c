@@ -6,11 +6,11 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 18:15:53 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/03/15 18:17:19 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/03/22 13:02:15 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../minishell.h"
+#include "../minishell.h"
 
 void	tokenization(char *input, t_shell *shell)
 {
@@ -46,6 +46,7 @@ void	tokenization(char *input, t_shell *shell)
 	token->next = NULL;
 	shell->token = head;
 	print_token(shell);
+	free_token(shell);
 }
 
 int	handle_spscial_char(char *input, int x, t_shell *shell)
@@ -84,7 +85,9 @@ int	handle_pipe(char *input, int x, t_shell *shell)
 
 void	print_token(t_shell *shell)
 {
-	t_token *token = shell->token;
+	t_token	*token;
+
+	token = shell->token;
 	while (token)
 	{
 		ft_printf("token: ");
@@ -92,4 +95,19 @@ void	print_token(t_shell *shell)
 		ft_putchar_fd('\n', 1);
 		token = token->next;
 	}
+}
+
+void	free_token(t_shell *shell)
+{
+	t_token	*tmp;
+
+	while (shell->token)
+	{
+		tmp = shell->token;
+		shell->token = shell->token->next;
+		free(tmp->value);
+		free(tmp);
+		tmp = NULL;
+	}
+	free(shell->token);
 }
