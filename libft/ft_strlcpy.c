@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbaniatt <tbaniatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 10:47:11 by tbaniatt          #+#    #+#             */
-/*   Updated: 2024/09/03 09:02:55 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:46:13 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,3 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 		x++;
 	return (x);
 }
-/*
-int	main(void)
-{
-		char c[20];
-		printf("%zu\n",ft_strlcpy(c,"farahhhh",2));
-		printf("%zu",strlcpy(c,"farahhhh",2));
-
-	return (0);
-}*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbaniatt <tbaniatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 12:00:44 by tbaniatt          #+#    #+#             */
-/*   Updated: 2024/09/01 17:56:21 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:46:28 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,3 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	}
 	return (NULL);
 }
-
-// int main()
-// {
-// 	char    str1[] = "hello world";
-//     char    str2[] = "e";
-
-//     printf(" %s\n", str1);
-//     printf("%s\n", str2);
-//     printf("%s\n", ft_strnstr(str1, str2, 10));
-
-//     return (0);
-// }

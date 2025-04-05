@@ -6,7 +6,7 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 01:24:16 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/03/22 15:21:14 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/03/22 19:57:40 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ void	execute_command(char *input, t_shell *shell)
 	{
 		shell_error_message(strerror(errno));
 		ft_free_array(shell->paths);
+		shell->paths = NULL; // Set to NULL after freeing
 		ft_free_array(shell->args);
+		shell->args = NULL; // Set to NULL after freeing
 		return ;
 	}
 	shell->pid = fork();
@@ -34,6 +36,7 @@ void	execute_command(char *input, t_shell *shell)
 		shell->env_array = env_list_to_array(shell->env);
 		execve(shell->command, shell->args, shell->env_array);
 		shell_error_message(strerror(errno));
+		ft_free_array(shell->env_array); // Free env_array after execve fails
 		exit(EXIT_FAILURE);
 	}
 	else if (shell->pid < 0)
@@ -41,6 +44,7 @@ void	execute_command(char *input, t_shell *shell)
 	else
 		waitpid(shell->pid, &status, 0);
 	free(shell->command);
+	shell->command = NULL; // Set to NULL after freeing
 }
 
 char	*get_path(char **env, t_shell *shell)

@@ -21,7 +21,6 @@ SRCS = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c\
 NAME = minishell
 
 LIBFT = libft/libft.a
-PRINTF = printf/libftprintf.a
 
 
 LIBS = -lreadline
@@ -30,14 +29,11 @@ OBJ = $(addprefix objs/, $(SRCS:.c=.o))
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT) $(PRINTF)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) $(LIBS) -o $(NAME)
+$(NAME): $(OBJ) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LIBS) -o $(NAME)
 
 $(LIBFT):
 	@make -C libft
-
-$(PRINTF):
-	@make -C printf
 
 
 objs/%.o: %.c
@@ -46,12 +42,10 @@ objs/%.o: %.c
 
 clean:
 	@make -C libft clean
-	@make -C printf clean
 	@rm -rf objs
 
 fclean: clean
 	@make -C libft fclean
-	@make -C printf fclean
 	@rm -f $(NAME)
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 23:09:59 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/03/22 15:22:27 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/03/22 17:45:19 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@ void	ft_free_array(char **array)
 	while (array[i])
 	{
 		free(array[i]);
+		array[i] = NULL; // Set to NULL after freeing
 		i++;
 	}
 	free(array);
+	array = NULL; // Set to NULL after freeing
 }
 
 void	free_env(t_env *env)
@@ -59,6 +61,14 @@ void	cleanup(t_shell *shell)
 		free_env(shell->env);
 		shell->env = NULL;
 	}
-	ft_free_array(shell->paths);
-	ft_free_array(shell->args);
+	if (shell->paths)
+	{
+		ft_free_array(shell->paths);
+		shell->paths = NULL; // Set to NULL after freeing
+	}
+	if (shell->args)
+	{
+		ft_free_array(shell->args);
+		shell->args = NULL; // Set to NULL after freeing
+	}
 }

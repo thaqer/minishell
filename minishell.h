@@ -6,7 +6,7 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 19:12:42 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/03/22 14:23:18 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:44:29 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "get_next_line/get_next_line.h"
 # include "libft/libft.h"
-# include "printf/ft_printf.h"
 # include <dirent.h>
 # include <errno.h>
 # include <fcntl.h>
@@ -65,6 +64,7 @@ typedef struct s_shell
 
 // main.c
 void				handle_prompt(t_shell *shell);
+void				setup_shell(t_shell *shell, char **env);
 
 // environment.c
 t_env				*get_env(char **env);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbaniatt <tbaniatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 19:02:46 by tbaniatt          #+#    #+#             */
-/*   Updated: 2024/09/03 09:02:55 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:46:34 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,3 @@ char	*ft_strrchr(const char *s, int c)
 		return (NULL);
 	return (((char *)s) + x);
 }
-/*
-int	main(void)
-{
-	char    c[] = "thaerather";
-	printf("%p\n",strrchr(c,'f'));
-	printf("%p\n",ft_strrchr(c,'f'));
-	printf("%p",(c));
-
-}*/

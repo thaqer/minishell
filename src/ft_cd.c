@@ -6,7 +6,7 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 13:25:45 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/03/06 01:49:10 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/03/22 17:26:11 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,25 @@ int	ft_cd(t_shell *shell)
 	}
 	oldpwd = getcwd(NULL, 0);
 	if (!oldpwd)
+	{
+		free(path);
 		return (shell_error_message(strerror(errno)));
+	}
 	if (chdir(path) == -1)
 	{
 		free(oldpwd);
+		free(path);
 		return (shell_error_message(strerror(errno)));
 	}
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
+	{
+		free(oldpwd);
+		free(path);
 		return (shell_error_message(strerror(errno)));
+	}
 	end_cd_process(shell, oldpwd, pwd);
+	free(path);
 	return (1);
 }
 

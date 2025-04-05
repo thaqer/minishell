@@ -6,7 +6,7 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 18:15:53 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/03/22 13:02:15 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:44:58 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	print_token(t_shell *shell)
 	token = shell->token;
 	while (token)
 	{
-		ft_printf("token: ");
+		printf("token: ");
 		ft_putstr_fd(token->value, 1);
 		ft_putchar_fd('\n', 1);
 		token = token->next;

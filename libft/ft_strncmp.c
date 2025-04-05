@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbaniatt <tbaniatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 09:44:47 by tbaniatt          #+#    #+#             */
-/*   Updated: 2024/09/03 09:02:55 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:46:24 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,3 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return (0);
 }
-
-/*
-int	main(void)
-{
-	char s1[] = "thaeri";
-	char s2[] = "thaere";
-	int s = ft_strncmp(s1,s2,5);
-	printf("%d", s);
-}*/
