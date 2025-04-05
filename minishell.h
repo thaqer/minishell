@@ -6,14 +6,13 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 19:12:42 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/04/05 15:44:29 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/04/05 15:48:47 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "get_next_line/get_next_line.h"
 # include "libft/libft.h"
 # include <dirent.h>
 # include <errno.h>

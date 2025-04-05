@@ -1,8 +1,7 @@
 CC = cc
 
 CFLAGS = -Wall -Werror -Wextra
-SRCS = get_next_line/get_next_line.c get_next_line/get_next_line_utils.c\
-	src/builtin.c\
+SRCS = 	src/builtin.c\
 	src/commands.c\
 	src/environment.c\
 	src/expantion.c\
