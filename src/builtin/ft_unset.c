@@ -6,11 +6,11 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 01:12:31 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/03/06 01:20:01 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/04/06 00:39:10 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	ft_unset(char *input, t_shell *shell)
 {

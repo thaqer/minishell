@@ -6,11 +6,11 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 13:25:45 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/03/22 17:26:11 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/04/06 00:38:53 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	ft_cd(t_shell *shell)
 {

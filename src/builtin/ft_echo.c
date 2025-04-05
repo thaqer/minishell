@@ -6,11 +6,11 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 21:53:42 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/03/08 00:09:24 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/04/06 00:38:56 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	ft_echo(char *input, t_shell *shell)
 {

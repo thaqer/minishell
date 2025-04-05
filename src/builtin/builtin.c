@@ -6,11 +6,11 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:10:36 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/03/22 12:57:42 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/04/06 00:38:42 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	it_is_builtin(t_shell *shell)
 {

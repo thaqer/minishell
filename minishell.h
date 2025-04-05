@@ -6,7 +6,7 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 19:12:42 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/04/05 15:48:47 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/04/06 00:34:13 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@
 
 # define PROMPT "\033[94mdarkspace\033[0m:~"
 # define MAX_PATH 4096
+
+# define pipe 1
+# define redirection 2
+# define heredoc 3
+# define append 4
 
 typedef struct s_env
 {

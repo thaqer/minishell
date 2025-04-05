@@ -6,7 +6,7 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 19:12:12 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/03/22 20:42:54 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/04/06 00:30:28 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,10 @@ int	main(int ac, char **av, char **env)
 			break ;
 		}
 		tokenization(shell.input, &shell);
-		if (ft_strlen(shell.input) > 0)
-			add_history(shell.input);
-		if (!it_is_builtin(&shell))
-			execute_command(shell.input, &shell);
+		print_token(&shell);
+		free_token(&shell);
 		free(shell.input);
-		shell.input = NULL; // Set to NULL after freeing
+		shell.input = NULL;
 	}
 	free_env(shell.env);
 	rl_clear_history();

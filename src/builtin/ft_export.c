@@ -6,14 +6,11 @@
 /*   By: tbaniatt <tbaniatt@student.42amman.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 12:06:47 by tbaniatt          #+#    #+#             */
-/*   Updated: 2025/03/07 02:47:43 by tbaniatt         ###   ########.fr       */
+/*   Updated: 2025/04/06 00:39:04 by tbaniatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
-
-// split this function into 2 functions to be less than 25 lines
-// one is the mean function and the other for free the things
+#include "../../minishell.h"
 
 int	ft_export(char *input, t_shell *shell)
 {

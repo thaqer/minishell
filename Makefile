@@ -1,19 +1,19 @@
 CC = cc
 
 CFLAGS = -Wall -Werror -Wextra
-SRCS = 	src/builtin.c\
+SRCS = 	src/builtin/builtin.c\
 	src/commands.c\
 	src/environment.c\
 	src/expantion.c\
-	src/ft_cd.c\
-	src/ft_echo.c\
-	src/ft_exit.c\
-	src/ft_export.c\
-	src/ft_pwd.c\
-	src/ft_unset.c\
+	src/builtin/ft_cd.c\
+	src/builtin/ft_echo.c\
+	src/builtin/ft_exit.c\
+	src/builtin/ft_export.c\
+	src/builtin/ft_pwd.c\
+	src/builtin/ft_unset.c\
 	src/main.c\
 	src/signals.c\
-	src/tokenizer.c\
+	src/tokenization/tokenizer.c\
 	src/utils.c\
 	
 
